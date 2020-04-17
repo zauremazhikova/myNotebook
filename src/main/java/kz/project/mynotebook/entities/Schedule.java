@@ -1,15 +1,18 @@
 package kz.project.mynotebook.entities;
 
 import kz.project.mynotebook.interfaces.Event;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "schedule")
+@Data
 public class Schedule implements Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name")
