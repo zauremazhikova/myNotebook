@@ -1,38 +1,85 @@
 package kz.project.mynotebook.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import kz.project.mynotebook.interfaces.Event;
-import kz.project.mynotebook.enums.PriorityIssue;
-import kz.project.mynotebook.enums.StatusIssue;
-import lombok.Data;
+import kz.project.mynotebook.enums.*;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "issue")
-@Data
+@ToString(of = {"id", "createDate", "name", "finishDatePlan", "description", "priority"})
+@EqualsAndHashCode(of = {"id"})
+
 public class Issue implements Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "finish_date_plan")
-    private Date finish_date_plan;
+    @Column(updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createDate;
 
-    @Column(name = "creat_date")
-    private Date creat_date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDateTime finishDatePlan;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "priority")
     private PriorityIssue priority;
 
-    @Column(name = "statusIssue")
-    private StatusIssue statusIssue;
+    //
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
+
+    public LocalDateTime getFinishDatePlan() {
+        return finishDatePlan;
+    }
+
+    public void setFinishDatePlan(LocalDateTime finishDatePlan) {
+        this.finishDatePlan = finishDatePlan;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public PriorityIssue getPriority() {
+        return priority;
+    }
+
+    public void setPriority(PriorityIssue priority) {
+        this.priority = priority;
+    }
 
 }

@@ -5,6 +5,7 @@ import kz.project.mynotebook.repositories.BirthdayRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.*;
 
 @RestController
@@ -25,8 +26,9 @@ public class BirthdayController {
         return birthdayRepository.findBirthdayById(id);
     }
 
-    @PostMapping(path = "create/json")
+    @PostMapping
     public Birthday create(@RequestBody Birthday birthday){
+//        birthday.setDate(LocalDateTime.now());
         return birthdayRepository.save(birthday);
     }
 
@@ -36,7 +38,7 @@ public class BirthdayController {
             @RequestBody Birthday birthday){
 
         BeanUtils.copyProperties(birthday, birthdayFromDBb, "id");
-        return birthdayRepository.save(birthday);
+        return birthdayRepository.save(birthdayFromDBb);
     }
 
     @DeleteMapping(path = "{id}")
@@ -62,6 +64,5 @@ public class BirthdayController {
         }
         return birthdaysJson;
     }
-
 
 }

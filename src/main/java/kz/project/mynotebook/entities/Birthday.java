@@ -1,27 +1,29 @@
 package kz.project.mynotebook.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import kz.project.mynotebook.interfaces.Event;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "birthday")
 @ToString(of = {"id", "person", "date"})
 @EqualsAndHashCode(of = {"id"})
+
 public class Birthday implements Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "person")
     private String person;
 
-    @Column(name = "date")
-    private Date date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDateTime date;
+
+    //
 
     public Long getId() {
         return id;
@@ -39,11 +41,11 @@ public class Birthday implements Event {
         this.person = person;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 }
