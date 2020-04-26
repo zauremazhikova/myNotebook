@@ -1,7 +1,6 @@
 package kz.project.mynotebook.entities;
 
 import kz.project.mynotebook.interfaces.Event;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
