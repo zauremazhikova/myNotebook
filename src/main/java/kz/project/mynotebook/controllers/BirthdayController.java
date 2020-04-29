@@ -28,7 +28,6 @@ public class BirthdayController {
 
     @PostMapping
     public Birthday create(@RequestBody Birthday birthday){
-//        birthday.setDate(LocalDateTime.now());
         return birthdayRepository.save(birthday);
     }
 
