@@ -6,6 +6,7 @@ import kz.project.mynotebook.enums.*;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,7 +27,7 @@ public class Issue implements Event {
     private LocalDateTime createDate;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDateTime finishDatePlan;
+    private LocalDate finishDatePlan;
 
     private String description;
 
@@ -58,11 +59,11 @@ public class Issue implements Event {
         this.createDate = createDate;
     }
 
-    public LocalDateTime getFinishDatePlan() {
+    public LocalDate getFinishDatePlan() {
         return finishDatePlan;
     }
 
-    public void setFinishDatePlan(LocalDateTime finishDatePlan) {
+    public void setFinishDatePlan(LocalDate finishDatePlan) {
         this.finishDatePlan = finishDatePlan;
     }
 

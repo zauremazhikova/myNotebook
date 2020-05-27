@@ -26,7 +26,7 @@ public class BirthdayController {
         return birthdayRepository.findBirthdayById(id);
     }
 
-    @PostMapping
+    @PostMapping(path = "/create")
     public Birthday create(@RequestBody Birthday birthday){
         return birthdayRepository.save(birthday);
     }

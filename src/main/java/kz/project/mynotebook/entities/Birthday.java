@@ -5,7 +5,7 @@ import kz.project.mynotebook.interfaces.Event;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "birthday")
@@ -21,7 +21,7 @@ public class Birthday implements Event {
     private String person;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDateTime date;
+    private LocalDate date;
 
     //
 
@@ -41,11 +41,11 @@ public class Birthday implements Event {
         this.person = person;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }
